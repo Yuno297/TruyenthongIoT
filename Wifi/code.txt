@@ -1,0 +1,47 @@
+# Board: Espressif ESP32-S3-DevKitM-1 (Espressif)
+# Definition: definitions/boards/esp32-s3-devkitm-1/manifest.yaml
+
+esphome:
+  name: hiep
+  friendly_name: Hiep
+
+esp32:
+  variant: esp32s3
+  flash_size: 8MB
+  framework:
+    type: esp-idf
+
+logger:
+
+api:
+  encryption:
+    key: "G/EWzJs8demwn2hnR0OHs2LDq+As9Xl2R1R1Y+rBWgI="
+
+ota:
+  - platform: esphome
+    password: "12345678"
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  ap:
+    ssid: Hiep Fallback Hotspot
+    password: "SXsmpGIY1uyM"
+
+captive_portal:
+light:
+  - platform: esp32_rmt_led_strip
+    pin: GPIO48
+    rgb_order: GRB
+    num_leds: 1
+    name: "Led Tich Hop ESP32S3"
+    chipset: WS2812
+    effects:
+      - random:
+          name: "Chuyen Mau Tu Dong"
+          transition_length: 3s
+          update_interval: 3s
+      - pulse:
+          name: "Nhp Nhay"
+          transition_length: 0.5s
+          update_interval: 0.5s
